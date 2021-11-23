@@ -1,21 +1,19 @@
 {
 	"hosts": [{
-		"home": [{
-				"name": "Raspiberry Pi",
-				"cmd": "ssh pi@192.168.5.17"
-			},
-			{
-				"name": "Webserver",
-				"cmd": "ssh xpyo@192.168.0.11"
-			},
-			{
-				"name": "VPS0",
-				"cmd": "ssh root@8.8.8.8"
-			},
-			{
-				"name": "VPS1",
-				"cmd": "ssh root@178.79.148.171"
-			}
-		]
-	}]
+			"name": "Raspiberry Pi",
+			"cmd": "ssh pi@192.168.5.17"
+		},
+		{
+			"name": "Webserver",
+			"cmd": "ssh xpyo@192.168.0.11"
+		},
+		{
+			"name": "VPS0",
+			"cmd": "ssh root@8.8.8.8"
+		},
+		{
+			"name": "VPS1",
+			"cmd": "ssh root@200.79.71.191"
+		}
+	]
 }

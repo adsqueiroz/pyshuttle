@@ -2,38 +2,39 @@
 
 import json
 import os
+import time
 
 with open("shuttle.json", "r") as file:
-	lines = file.read()
+    lines = file.read()
 
-x = json.loads(lines)
+hosts = json.loads(lines)["hosts"]
 
-print("+-----------------------------------------------------------------------------------------------") 
-print("| number | name                                        | command")                                             
-print("+-----------------------------------------------------------------------------------------------") 
+def selected_command(opt):
+    if(len(hosts) > 0 and (opt+1) <= len(hosts)):
+        os.system(hosts[opt]["cmd"])
+    else:
+        print("\nTry again! Choose a number to connect from the list provided.")
 
-hosts = []
-count = 0
+def f_connect():
+    print("+-----------------------------------------------------------------------------------------------")
+    print("| number | name                                        | command")
+    print("+-----------------------------------------------------------------------------------------------")
 
-for i in x["hosts"][0]["home"]:
-    count = count + 1
-    print("| {0}      | {1}   ".format(count, i["name"], i["cmd"]))
-    print("|------------------------------------------------------ {0}".format(i["cmd"]))
-    hosts.append(i["cmd"])
+    for index, host in enumerate(hosts):
+        print("| {0}      | {1}   ".format(index, host["name"]))
+        print(
+            "|------------------------------------------------------ {0}\n".format(host["cmd"]))
 
-user_choice = int(input("\nEnter a bookmark to connect: "))
+    user_choice = input("\nChoose a number to connect: ")
+    try:
+        i_user_choice = int(user_choice)
+        selected_command(i_user_choice)
 
-if user_choice == 1:
-    os.system(hosts[0])
+    except ValueError:
+        os.system("clear")
+        print("Enter with a number!")
+        time.sleep(2)
+        os.system("clear")
+        f_connect()
 
-elif user_choice == 2:
-    os.system(hosts[1])
-
-elif user_choice == 3:
-    os.system(hosts[2])
-
-elif user_choice == 4:
-    os.system(hosts[3])
-
-else: 
-    print("Try again!")
+f_connect()        
