@@ -3,8 +3,11 @@
 import json
 import os
 import time
+ 
+home_dir = os.environ['HOME']
+hosts_file = "/.shuttle.json"
 
-with open("shuttle.json", "r") as file:
+with open(home_dir+hosts_file, "r") as file:
     lines = file.read()
 
 hosts = json.loads(lines)["hosts"]
@@ -26,6 +29,7 @@ def f_connect():
             "|------------------------------------------------------ {0}\n".format(host["cmd"]))
 
     user_choice = input("\nChoose a number to connect: ")
+
     try:
         i_user_choice = int(user_choice)
         selected_command(i_user_choice)
